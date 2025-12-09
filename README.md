@@ -1,1 +1,0 @@
-# InfoTech Synergy Website

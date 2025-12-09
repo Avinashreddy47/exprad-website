@@ -1,79 +1,50 @@
 var app = angular.module('companyApp', ['ngRoute']);
 
-app.config(function ($routeProvider, $locationProvider) {
-  // Get the repository name from the URL for GitHub Pages
-  var baseUrl = window.location.pathname.split('/')[1] || '';
-  baseUrl = baseUrl ? '/' + baseUrl : '';
+app.config(function ($routeProvider) {
   $routeProvider
     .when('/', {
-      templateUrl: baseUrl + '/home.html',
+      templateUrl: 'home.html',
       controller: 'HomeController',
     })
     .when('/projects', {
-      templateUrl: baseUrl + '/projects.html',
+      templateUrl: 'projects.html',
       controller: 'ProjectsController',
     })
     .when('/missions', {
-      templateUrl: baseUrl + '/missions.html',
+      templateUrl: 'missions.html',
       controller: 'MissionsController',
     })
     .when('/goals', {
-      templateUrl: baseUrl + '/goals.html',
+      templateUrl: 'goals.html',
       controller: 'GoalsController',
-    })
-    .when('/leadership', {
-      templateUrl: baseUrl + '/leadership.html',
-      controller: 'LeadershipController',
-    })
-    .when('/contact', {
-      templateUrl: 'contact.html',
-      controller: 'ContactController',
     })
     .otherwise({
       redirectTo: '/',
     });
-
-  // Configure HTML5 mode
-  $locationProvider.html5Mode({
-    enabled: true,
-    requireBase: false,
-  });
 });
 
 app.controller('HomeController', function ($scope) {
-  $scope.message = 'Innovative Enterprise Solutions from a Fast-Growing Technology Partner';
+  $scope.message = 'Welcome to Exprad - Pioneering the Future with AI and Emerging Technologies';
   $scope.description =
-    "InfoTech Synergy is a dynamic young company delivering cutting-edge enterprise solutions. With over $500K in revenue and 3+ satisfied enterprise clients, we're proving that agile, innovative approaches deliver better results.";
+    'At Exprad, we are dedicated to outsourcing applications and building innovative solutions that harness the power of emerging technologies. Our focus is on creating cutting-edge AI-driven products that lead the industry.';
 });
 
 app.controller('ProjectsController', function ($scope) {
   $scope.projects = [
     {
-      title: 'E-Commerce Digital Transformation',
+      title: 'AI-Powered Analytics Platform',
       description:
-        "Revolutionized a growing retail client's online presence with a modern e-commerce platform. Our agile approach and innovative solutions led to significant improvements in performance and sales.",
-      metrics: {
-        improvement: 40,
-        timeframe: '8 weeks',
-      },
+        'A comprehensive platform that uses machine learning to provide deep insights into business data, enabling data-driven decision-making.',
     },
     {
-      title: 'Healthcare Analytics Platform',
+      title: 'IoT Integration Solutions',
       description:
-        'Developed a custom analytics solution for a regional healthcare provider, enabling data-driven decision making and improving patient care efficiency.',
-      metrics: {
-        improvement: 35,
-        timeframe: '12 weeks',
-      },
+        'Seamless integration of Internet of Things devices with existing systems, enhancing automation and efficiency in various industries.',
     },
     {
-      title: 'Cloud Infrastructure Optimization',
+      title: 'Blockchain-Based Secure Transactions',
       description:
-        'Implemented a cost-effective cloud solution for a fintech startup, resulting in improved system reliability and significant cost savings.',
-      metrics: {
-        improvement: 30,
-        timeframe: '6 weeks',
-      },
+        'Developing secure, transparent transaction systems using blockchain technology for financial and supply chain applications.',
     },
   ];
 });
@@ -81,19 +52,19 @@ app.controller('ProjectsController', function ($scope) {
 app.controller('MissionsController', function ($scope) {
   $scope.missions = [
     {
-      title: 'Agile Innovation',
+      title: 'Innovation Through Outsourcing',
       description:
-        'As a young company, we bring fresh perspectives and rapid innovation to enterprise solutions, delivering results faster than traditional providers.',
+        'We specialize in outsourcing application development, allowing our clients to focus on their core business while we handle the technical complexities.',
     },
     {
-      title: 'Client-Focused Growth',
+      title: 'Building Innovative Solutions',
       description:
-        'We maintain a focused client portfolio to ensure personalized attention and exceptional service delivery for each project.',
+        'Our team creates innovative solutions that address real-world problems, leveraging the latest in AI, machine learning, and other emerging technologies.',
     },
     {
-      title: 'Technology Leadership',
+      title: 'Leading in AI Solutions',
       description:
-        "Despite our early stage, we're already pushing boundaries in AI and cloud solutions, backed by our proven track record of successful implementations.",
+        'We are at the forefront of AI innovation, developing solutions that not only meet current needs but also anticipate future challenges.',
     },
   ];
 });
@@ -101,76 +72,24 @@ app.controller('MissionsController', function ($scope) {
 app.controller('GoalsController', function ($scope) {
   $scope.goals = [
     {
-      title: 'Expand Client Success Stories',
+      title: 'Expand AI Capabilities',
       description:
-        'Build on our initial success with enterprise clients by delivering more transformative solutions that demonstrate our capabilities.',
+        'To become a leader in AI solutions by investing in research and development of advanced machine learning models and natural language processing systems.',
     },
     {
-      title: 'Innovation Leadership',
+      title: 'Global Expansion',
       description:
-        'Continue pushing technological boundaries while maintaining our perfect track record of successful project deliveries.',
+        'Expand our outsourcing services globally, establishing partnerships in key markets to deliver innovative solutions worldwide.',
     },
     {
-      title: 'Strategic Growth',
+      title: 'Sustainable Technology',
       description:
-        'Scale our operations thoughtfully to serve more clients while maintaining our high standards of personalized service and innovation.',
+        'Develop technologies that promote sustainability, using AI to optimize resource usage and reduce environmental impact.',
     },
     {
-      title: 'Market Expansion',
+      title: 'Talent Development',
       description:
-        'Leverage our early success and $500K+ revenue milestone to expand our presence in key enterprise markets.',
+        'Build a world-class team of experts in emerging technologies, fostering a culture of continuous learning and innovation.',
     },
   ];
-});
-
-app.controller('LeadershipController', function ($scope) {
-  $scope.leaders = [
-    {
-      name: 'John Smith',
-      title: 'Chief Executive Officer',
-      description:
-        "With over 15 years of experience in enterprise technology, John leads our company's strategic vision and growth initiatives.",
-    },
-    {
-      name: 'Sarah Johnson',
-      title: 'Chief Technology Officer',
-      description:
-        'Sarah brings deep technical expertise in AI and machine learning, leading our technology strategy and innovation efforts.',
-    },
-    {
-      name: 'Michael Chen',
-      title: 'Head of Client Success',
-      description:
-        'Michael ensures our clients receive exceptional value from our solutions. His client-first approach has helped maintain our 100% client satisfaction rate.',
-    },
-    {
-      name: 'Emily Rodriguez',
-      title: 'Director of Innovation',
-      description:
-        'Emily leads our research and development initiatives, focusing on emerging technologies and their practical applications for enterprise clients.',
-    },
-  ];
-});
-
-app.controller('ContactController', function ($scope) {
-  $scope.formData = {
-    name: '',
-    email: '',
-    company: '',
-    message: '',
-  };
-
-  $scope.submitForm = function () {
-    // In a real application, this would send the data to a server
-    console.log('Form submitted:', $scope.formData);
-    alert('Thank you for your message. We will get back to you soon!');
-
-    // Reset form
-    $scope.formData = {
-      name: '',
-      email: '',
-      company: '',
-      message: '',
-    };
-  };
 });
