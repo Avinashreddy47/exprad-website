@@ -11,19 +11,16 @@ permissions:
   id-token: write
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Configure Git
+      - name: Deploy to gh-pages
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-
-      - name: Deploy to GitHub Pages
-        run: |
           git checkout --orphan gh-pages
           git rm -rf .
           cp -r docs/* .
@@ -32,15 +29,3 @@ jobs:
           git add .
           git commit -m "Deploy to GitHub Pages"
           git push -f origin gh-pages
-
-      - name: Enable GitHub Pages
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          gh api \
-            --method PUT \
-            -H "Accept: application/vnd.github+json" \
-            -H "X-GitHub-Api-Version: 2022-11-28" \
-            /repos/${{ github.repository }}/pages \
-            -f source='{"branch":"gh-pages","path":"/"}' \
-            -f build_type="legacy"
