@@ -16,13 +16,16 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Deploy to gh-pages
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git checkout --orphan gh-pages
-          git rm -rf .
+          git symbolic-ref HEAD refs/heads/gh-pages
+          git reset --mixed
+          git rm --cached -r .
           cp -r docs/* .
           rm -rf docs
           touch .nojekyll
